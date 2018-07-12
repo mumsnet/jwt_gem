@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'mumsnet_jwt'
-  s.version = '0.0.1'
+  s.version = '1.0.0'
   s.date = '2018-07-11'
   s.summary = 'JSON web token lib'
   s.authors = ['Murray Catto']
