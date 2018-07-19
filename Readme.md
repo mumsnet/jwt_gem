@@ -6,14 +6,10 @@ This gem will be used for all api jwt token creation and verification
 
 ## Installation
 
-The gem is hosted privately so adding it to your projects isn't as easy as bundle install.
-
 Please add to your gem file:
 ```
 gem 'mumsnet_jwt', git: "https://github.com/mumsnet/jwt_gem"
 ```
-You need to generate a github access token.
-Please view [this](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) on how to create an access token
 
 ## Requirements
 The following Enviromental Variables Must be defined in order to use this gem.
