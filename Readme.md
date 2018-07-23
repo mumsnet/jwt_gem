@@ -13,8 +13,8 @@ gem 'mumsnet_jwt', git: "https://github.com/mumsnet/jwt_gem"
 
 ## Requirements
 The following Enviromental Variables Must be defined in order to use this gem.
-The JWT_SECERET variable must be the same as all the other services.
-ENV['API_ACCESS_TOKEN']
+The JWT_SECERET and JWT_CHECK variables must be the same as all the other services.
+ENV['JWT_CHECK']
 ENV['JWT_ISSUER']
 ENV['JWT_SECERET']
 
