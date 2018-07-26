@@ -19,7 +19,7 @@ Your .env file should look something like this
 ```
 JWT_CLIENT_ID=general
 JWT_ISSUER=user # Whatever yours service code name is
-JWT_SECRETS=[{"client_id": "general","secret": "12345"},{"client_id": "macdonalds","secret": "12345"}]
+JWT_SECRETS=[{"client_id": "general","secret": "678910"},{"client_id": "macdonalds","secret": "12345"}]
 ```
 The JWT_SECRETS key is an array of client id's and their related secrets. By adding a client_id item to the json array you are granting whoever has those credentials access to your micro service
 
