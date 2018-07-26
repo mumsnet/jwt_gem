@@ -12,7 +12,7 @@ module MumsnetJWT
 
     def check_token(token)
       client_id = client_id_from_token(token)
-      decode_token(token: token, key: 'client_id', client_id: client_id) == client_id
+      decode_token(token: token, key: 'client_id') == client_id
     rescue StandardError
       false
     end
