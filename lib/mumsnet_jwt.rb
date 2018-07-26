@@ -8,7 +8,7 @@ module MumsnetJWT
     end
 
     def check_token(token)
-      decode_token(token: token, key: 'client_id') == ENV['JWT_CLIENT_ID']
+      decode_token(token: token, key: 'jwt_client_id') == ENV['JWT_CLIENT_ID']
     rescue StandardError
       false
     end
