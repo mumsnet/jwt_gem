@@ -13,10 +13,16 @@ gem 'mumsnet_jwt', git: "https://github.com/mumsnet/jwt_gem"
 
 ## Requirements
 The following Enviromental Variables Must be defined in order to use this gem.
-The JWT_SECERET and JWT_CHECK variables must be the same as all the other services.
-ENV['JWT_CHECK']
-ENV['JWT_ISSUER']
-ENV['JWT_SECERET']
+
+Your .env file should look something like this
+
+```
+JWT_CLIENT_ID=general
+JWT_ISSUER=user # Whatever yours service code name is
+JWT_SECERETS=[{"client_id": "general","secret": "12345"},{"client_id": "macdonalds","secret": "12345"}]
+```
+The JWT_SECERETS key is an array of client id's and their related secrets. By adding a client_id item to the json array you are granting whoever has those credentials access to your micro service
+
 
 ## Usage
 
