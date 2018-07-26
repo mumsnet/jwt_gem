@@ -20,7 +20,7 @@ module MumsnetJWT
       else
         decoded_token
       end
-    rescue StandardError
+    rescue StandardError·
       nil
     end
 
