@@ -18,7 +18,11 @@ module MumsnetJWT
 
     def check_token(token)
       client_id = client_id_from_token(token)
-      decode_token(token: token, key: 'client_id') == client_id
+      if client_id.present?
+        decode_token(token: token, key: 'client_id') == client_id
+      else
+        false
+      end
     rescue StandardError
       false
     end
@@ -34,6 +38,8 @@ module MumsnetJWT
     rescue StandardError·
       nil
     end
+
+    private
 
     def client_id_from_token(token)
       JSON.parse(Base64.decode64(token.split('.')[1]))['client_id']
