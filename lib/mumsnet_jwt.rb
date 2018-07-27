@@ -10,6 +10,11 @@ module MumsnetJWT
       JWT.encode payload, jwt_secret, 'HS256' unless jwt_secret.nil?
     end
 
+    def check_authorization_header(header)
+      token = header.split(' ').last
+      check_token(token)
+    end
+
     def check_token(token)
       client_id = client_id_from_token(token)
       decode_token(token: token, key: 'client_id') == client_id
