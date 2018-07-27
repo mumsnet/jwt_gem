@@ -61,7 +61,7 @@ API Usage:
 in a ` before_action :check_token` in your base api controller add a method like so
 ```ruby
 def check_token
-  head :unauthorized, content_type: 'text/html' unless MumsnetJWT.check_token(request.headers['token'])
+  head :unauthorized, content_type: 'text/html' unless MumsnetJWT.check_authorization_header(request.headers['Authorization'])
 end
 ```
 
