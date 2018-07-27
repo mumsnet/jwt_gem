@@ -11,6 +11,7 @@ module MumsnetJWT
     end
 
     def check_authorization_header(header)
+      return false unless header.split(' ').first == 'Bearer'
       token = header.split(' ').last
       check_token(token)
     end
