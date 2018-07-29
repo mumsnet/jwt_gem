@@ -1,5 +1,5 @@
 RSpec.describe MumsnetJWT do
-  ENV['JWT_SECRETS'] = '[{"client_id": "testing","secret": "12345"}]'
+  ENV['JWT_SECRETS'] = '[{"client_id": "testing", "secret": "12345"}]'
   ENV['JWT_CLIENT_ID'] = 'testing'
   ENV['JWT_ISSUER'] = 'rspec_testing'
   before(:each) do
@@ -24,7 +24,7 @@ RSpec.describe MumsnetJWT do
   end
 
   describe '#check_token' do
-    it 'should throw an error if the token is altered' do
+    it 'should return false if the token is altered' do
       old_token_body = JSON.parse(Base64.decode64(@token.split('.')[1]))
       # Decode the token
       old_token_body['client_id'] = 'testing_changed'
@@ -58,7 +58,7 @@ RSpec.describe MumsnetJWT do
       ENV['JWT_SECRETS'] = nil
       expect(described_class.tokenify).to be_falsy
       expect(described_class.check_token(@token)).to be_falsy
-      expect(described_class.decode_token(token:@token)).to eq(nil)
+      expect(described_class.decode_token(token: @token)).to eq(nil)
     end
   end
 end
