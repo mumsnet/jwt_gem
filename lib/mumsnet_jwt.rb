@@ -3,9 +3,11 @@ module MumsnetJWT
     require 'jwt'
     require 'json'
     require 'base64'
+    require 'logger'
 
     DEFAULT_EXP = Time.now.to_i + 60 * 60 * 24
     def tokenify(extra_payload: {})
+      return false if env_defined?
       payload = { client_id: ENV['JWT_CLIENT_ID'], iss: ENV['JWT_ISSUER'], exp: DEFAULT_EXP }.merge(extra_payload)
       JWT.encode payload, jwt_secret, 'HS256' unless jwt_secret.nil?
     end
@@ -18,7 +20,7 @@ module MumsnetJWT
 
     def check_token(token)
       client_id = client_id_from_token(token)
-      if client_id.present?
+      if !client_id.nil?
         decode_token(token: token, key: 'client_id') == client_id
       else
         false
@@ -40,6 +42,10 @@ module MumsnetJWT
     end
 
     private
+
+    def env_defined?
+      ENV['JWT_CLIENT_ID'].nil? || ENV['JWT_SECRETS'].nil? || ENV['JWT_ISSUER'].nil?
+    end
 
     def client_id_from_token(token)
       JSON.parse(Base64.decode64(token.split('.')[1]))['client_id']
