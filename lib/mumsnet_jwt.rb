@@ -13,12 +13,14 @@ module MumsnetJWT
     end
 
     def check_authorization_header(header)
+      return false if env_defined?
       return false unless header.split(' ').first == 'Bearer'
       token = header.split(' ').last
       check_token(token)
     end
 
     def check_token(token)
+      return false if env_defined?
       client_id = client_id_from_token(token)
       if !client_id.nil?
         decode_token(token: token, key: 'client_id') == client_id
@@ -30,6 +32,7 @@ module MumsnetJWT
     end
 
     def decode_token(token:, key: nil)
+      return nil if env_defined?
       client_id = client_id_from_token(token)
       decoded_token = JWT.decode(token, jwt_secret(client_id), true, algorithm: 'HS256') unless jwt_secret(client_id).nil?
       if key
