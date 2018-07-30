@@ -3,7 +3,6 @@ module MumsnetJWT
     require 'jwt'
     require 'json'
     require 'base64'
-    require 'logger'
 
     DEFAULT_EXP = Time.now.to_i + 60 * 60 * 24
     def tokenify(extra_payload: {})
@@ -17,6 +16,8 @@ module MumsnetJWT
       return false unless header.split(' ').first == 'Bearer'
       token = header.split(' ').last
       check_token(token)
+    rescue
+      return false
     end
 
     def check_token(token)

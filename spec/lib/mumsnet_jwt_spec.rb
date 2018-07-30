@@ -21,6 +21,10 @@ RSpec.describe MumsnetJWT do
       expect(described_class.check_authorization_header("Bearer #{@token}")).to be_truthy
       # Used for as Authentication header
     end
+
+    it 'should return false if header is nil or invalid' do
+      expect(described_class.check_authorization_header(nil)).to be_falsy
+    end
   end
 
   describe '#check_token' do
