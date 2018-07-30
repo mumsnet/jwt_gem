@@ -74,3 +74,16 @@ rescue StandardError
   head :unauthorized, content_type: 'text/html'
 end
 ```
+
+## Testing
+
+In order to run the tests just run the below command
+
+```
+rspec
+```
+You need the rspec installed on your computer.
+If you don't simply run 
+```
+gem install rspec
+```
