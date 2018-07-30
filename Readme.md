@@ -64,6 +64,19 @@ def check_token
   head :unauthorized, content_type: 'text/html' unless MumsnetJWT.check_authorization_header(request.headers['Authorization'])
 end
 ```
+## Testing
+
+In order to run the tests just run the below command
+
+```
+rspec
+```
+You need the rspec installed on your computer.
+If you don't simply run 
+```
+gem install rspec
+```
+
 
 If you have a before action for a user specific function such as update_account you would need to use a before action like this:
 
