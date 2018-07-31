@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/mumsnet/jwt_gem.svg?style=svg&circle-token=c58017fd78b7cc5b7f51291bf9576200f9609572)](https://circleci.com/gh/mumsnet/jwt_gem)
+
 # Mumsnet JWT Gem
 ![Shiny](https://media.giphy.com/media/3oEdv6thH4aJHVcs6c/giphy.gif)
 
