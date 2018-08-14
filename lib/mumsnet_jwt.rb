@@ -18,7 +18,8 @@ module MumsnetJWT
       token = header.split(' ').last
       check_token(token)
     rescue StandardError => e
-      puts "JWT ERROR:"
+      puts "JWT ERROR: check_authorization_header"
+      puts "Header: #{header}"
       puts e
       puts 'END JWT ERROR'
       false
@@ -33,7 +34,8 @@ module MumsnetJWT
         false
       end
     rescue StandardError => e
-      puts "JWT ERROR:"
+      puts "JWT ERROR: check_token"
+      puts "Token: #{token}"
       puts e
       puts 'END JWT ERROR'
       false
@@ -49,7 +51,9 @@ module MumsnetJWT
         decoded_token
       end
     rescue StandardError· => e
-      puts "JWT ERROR:"
+      puts "JWT ERROR: decode_token"
+      puts "token: #{token}"
+      puts "key: #{key}"
       puts e
       puts 'END JWT ERROR'
       nil
