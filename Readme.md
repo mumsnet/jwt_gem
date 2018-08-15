@@ -10,7 +10,7 @@ This gem will be used for all api jwt token creation and verification
 
 Please add to your gem file:
 ```
-gem 'mumsnet_jwt', git: "https://github.com/mumsnet/jwt_gem"
+gem 'mumsnet_jwt', '~> 2.1', '>= 2.1.2'
 ```
 
 ## Requirements
