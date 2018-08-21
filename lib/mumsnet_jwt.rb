@@ -3,8 +3,6 @@ module MumsnetJWT
     require 'jwt'
     require 'json'
     require 'base64'
-    require 'logger'
-    @logger = Logger.new(STDOUT)
     DEFAULT_EXP = Time.now.utc.to_i + 60 * 60 * 24
     def tokenify(extra_payload: {})
       return false if env_defined?
@@ -50,7 +48,7 @@ module MumsnetJWT
       else
         decoded_token
       end
-    rescue StandardError· => e
+    rescue StandardError => e
       puts 'JWT ERROR: decode_token'
       puts "token: #{token}"
       puts "key: #{key}"
