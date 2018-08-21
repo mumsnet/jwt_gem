@@ -1,7 +1,6 @@
 RSpec.describe MumsnetJWT do
   ENV['JWT_SECRETS'] = '[{"client_id": "testing", "secret": "12345"}]'
   ENV['JWT_CLIENT_ID'] = 'testing'
-  ENV['JWT_ISSUER'] = 'rspec_testing'
   before(:each) do
     @token = described_class.tokenify
   end
@@ -47,13 +46,11 @@ RSpec.describe MumsnetJWT do
       decoded_token = described_class.decode_token(token: @token).to_s
       expect(decoded_token).to include('client_id')
       expect(decoded_token).to include(ENV['JWT_CLIENT_ID'])
-      expect(decoded_token).to include('iss')
-      expect(decoded_token).to include(ENV['JWT_ISSUER'])
       expect(decoded_token).to include('exp')
     end
 
     it 'should decode only the specified key' do
-      expect(described_class.decode_token(token: @token, key: 'iss')).to eq(ENV['JWT_ISSUER'])
+      expect(described_class.decode_token(token: @token, key: 'client_id')).to eq(ENV['JWT_CLIENT_ID'])
     end
   end
 
