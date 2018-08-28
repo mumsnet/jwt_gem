@@ -70,7 +70,7 @@ If you have a before action for a user specific function such as update_account 
 
 ```ruby
 def set_user_via_token
-  @user = User.find(MumsnetJWT.decode_token(token: request.headers['token'], key: 'user_id'))
+  @user = User.find(MumsnetJWT.decode_token(token: request.headers['Authorization'].split(' ').last, key: 'user_id'))
 rescue StandardError
   head :unauthorized, content_type: 'text/html'
 end
