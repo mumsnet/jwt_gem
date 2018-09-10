@@ -1,8 +1,6 @@
 [![CircleCI](https://circleci.com/gh/mumsnet/jwt_gem.svg?style=svg&circle-token=c58017fd78b7cc5b7f51291bf9576200f9609572)](https://circleci.com/gh/mumsnet/jwt_gem)
 
 # Mumsnet JWT Gem
-![Shiny](https://media.giphy.com/media/3oEdv6thH4aJHVcs6c/giphy.gif)
-
 
 This gem will be used for all api jwt token creation and verification
 
@@ -10,7 +8,7 @@ This gem will be used for all api jwt token creation and verification
 
 Please add to your gem file:
 ```
-gem 'mumsnet_jwt', '~> 2.1', '>= 2.1.2'
+gem 'mumsnet_jwt'
 ```
 
 ## Requirements
@@ -70,7 +68,7 @@ If you have a before action for a user specific function such as update_account 
 
 ```ruby
 def set_user_via_token
-  @user = User.find(MumsnetJWT.decode_token(token: request.headers['token'], key: 'user_id'))
+  @user = User.find(MumsnetJWT.decode_token(token: request.headers['Authorization'].split(' ').last, key: 'user_id'))
 rescue StandardError
   head :unauthorized, content_type: 'text/html'
 end
