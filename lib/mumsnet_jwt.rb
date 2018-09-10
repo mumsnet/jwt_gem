@@ -3,10 +3,10 @@ module MumsnetJWT
     require 'jwt'
     require 'json'
     require 'base64'
-    DEFAULT_EXP = Time.now.utc.to_i + 60 * 60 * 24
     def tokenify(extra_payload: {})
       return false if env_defined?
-      payload = { client_id: ENV['JWT_CLIENT_ID'], exp: DEFAULT_EXP }.merge(extra_payload)
+      exp = Time.now.utc.to_i + 60 * 60 * 24
+      payload = { client_id: ENV['JWT_CLIENT_ID'], exp: exp }.merge(extra_payload)
       JWT.encode payload, jwt_secret, 'HS256' unless jwt_secret.nil?
     end
 
